@@ -1,0 +1,33 @@
+<h1>Show Proposal</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @proposal.title %>
+  </li>
+
+  <li>
+    <strong>Details:</strong>
+    <%= @proposal.details %>
+  </li>
+
+  <li>
+    <strong>Hosted by:</strong>
+    <%= @proposal.hosted_by %>
+  </li>
+
+  <li>
+    <strong>Hosting coop:</strong>
+    <%= @proposal.hosting_coop %>
+  </li>
+
+  <li>
+    <strong>Accepted:</strong>
+    <%= @proposal.accepted %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.proposal_path(@conn, :edit, @proposal) %></span>
+<span><%= link "Back", to: Routes.proposal_path(@conn, :index) %></span>
