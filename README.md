@@ -1,20 +1,22 @@
 # Coopagenda
 
-To start your Phoenix server:
+Web app to organize International Cooperatives Show & Tell meetings. It allows the creation of agenda slots and proposals for specific dates.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+## Development
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Built using the Elixir's [Phoenix Framework](https://phoenixframework.org/). To run this app you will need:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- Erlang OTP >= 18
+- Elixir >= 1.5
+- NodeJS >= 5.0
+- PostgreSQL >= 11.5
 
-## Learn more
+### Start your Phoenix Server
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- Install dependencies with `mix deps.get`
+- Check your dev PostgreSQL configuration on `config/dev.exs`
+- Create and migrate your database with `mix ecto.etup`
+- Install Node.js dependencies with `cd assets && npm install`
+- Start Phoenix endpoint with `mix phx.server`
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.  :sparkles:
