@@ -1,0 +1,28 @@
+<h1>Listing Slots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Begin</th>
+      <th>Duration</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for slot <- @slots do %>
+    <tr>
+      <td><%= slot.begin %></td>
+      <td><%= slot.duration %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.slot_path(@conn, :show, slot) %></span>
+        <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, slot) %></span>
+        <span><%= link "Delete", to: Routes.slot_path(@conn, :delete, slot), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Slot", to: Routes.slot_path(@conn, :new) %></span>

@@ -1,0 +1,18 @@
+<h1>Show Slot</h1>
+
+<ul>
+
+  <li>
+    <strong>Begin:</strong>
+    <%= @slot.begin %>
+  </li>
+
+  <li>
+    <strong>Duration:</strong>
+    <%= @slot.duration %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.slot_path(@conn, :edit, @slot) %></span>
+<span><%= link "Back", to: Routes.slot_path(@conn, :index) %></span>
