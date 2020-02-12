@@ -15,8 +15,6 @@ defmodule CoopagendaWeb.Router do
 
   scope "/", CoopagendaWeb do
     pipe_through :browser
-
-    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
