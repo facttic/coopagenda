@@ -17,7 +17,7 @@ defmodule CoopagendaWeb.Router do
     pipe_through :browser
 
     resources "/proposals", ProposalController
-    resources "/topics", TopicController
+    resources "/slots", SlotController
   end
 
   # Other scopes may use custom stacks.
