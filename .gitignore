@@ -35,3 +35,8 @@ npm-debug.log
 
 # VS plugin
 /.elixir_ls/
+
+# ‘secret’ files are kept out of Git version control.
+**/*.secret.exs
+
+.env

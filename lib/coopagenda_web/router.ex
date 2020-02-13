@@ -16,8 +16,17 @@ defmodule CoopagendaWeb.Router do
   scope "/", CoopagendaWeb do
     pipe_through :browser
 
+    get "/", SlotController, :index
     resources "/proposals", ProposalController
     resources "/slots", SlotController
+  end
+
+  scope "/auth", CoopagendaWeb do
+    pipe_through :browser
+
+    # get "/signout", AuthController, :signout
+    # get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
