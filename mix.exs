@@ -26,7 +26,7 @@ defmodule Coopagenda.MixProject do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(_), do: ["lib", "priv/tasks"]
 
   # Specifies your project dependencies.
   #
@@ -45,7 +45,8 @@ defmodule Coopagenda.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
-      {:timex, "~> 3.5"}
+      {:timex, "~> 3.5"},
+      {:distillery, "~> 2.1"}
     ]
   end
 
