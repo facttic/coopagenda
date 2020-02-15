@@ -20,3 +20,7 @@ Built using the Elixir's [Phoenix Framework](https://phoenixframework.org/). To 
 - Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.  :sparkles:
+
+## License
+
+<img src="https://img.shields.io/badge/license-GPL--3-brightgreen" alt="license GNU General Public License v3.0"> GNU General Public License v3.0
