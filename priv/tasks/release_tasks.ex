@@ -29,12 +29,12 @@ defmodule Coopagenda.Tasks.ReleaseTasks do
   end
 
   defp start_connection() do
-    {:ok, _ } = @repo.start_link(pool_size: 1)
+    {:ok, _ } = @repo.start_link(pool_size: 2)
   end
 
   defp run_migrations() do
     IO.puts "Running migrations..."
-    # Ecto.Migrator.run(@repo, migrations_path(), :up, all: true)
+    Ecto.Migrator.run(@repo, migrations_path(), :up, all: true)
   end
 
   defp migrations_path(), do: Path.join([priv_dir(), "repo", "migrations"])
