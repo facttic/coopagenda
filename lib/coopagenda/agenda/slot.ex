@@ -5,7 +5,8 @@ defmodule Coopagenda.Agenda.Slot do
   schema "slots" do
     field :begin, :utc_datetime
     field :duration, :integer
-    field :user_id, :id
+    belongs_to :user, Coopagenda.Accounts.User
+    has_many :proposals, Coopagenda.Agenda.Proposal
 
     timestamps()
   end

@@ -8,8 +8,8 @@ defmodule Coopagenda.Agenda.Proposal do
     field :hosted_by, :string
     field :hosting_coop, :string
     field :title, :string
-    field :user_id, :id
-    field :slot_id, :id
+    belongs_to :user, Coopagenda.Accounts.User
+    belongs_to :slot, Coopagenda.Agenda.Slot
 
     timestamps()
   end
