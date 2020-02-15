@@ -1,5 +1,7 @@
 use Mix.Config
 
+default_secret_key_base = :crypto.strong_rand_bytes(64) |> Base.encode64
+
 config :coopagenda, Coopagenda.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
@@ -8,10 +10,11 @@ config :coopagenda, Coopagenda.Repo,
 
 config :coopagenda, CoopagendaWeb.Endpoint,
   load_from_system_env: true,
+  http: [port: {:system, "PORT"}],
   url: [host: {:system, "HOST"}, port: {:system, "PORT"}],
   server: true,
   version: Application.spec(:coopagenda_web, :vsn),
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  secret_key_base: System.get_env("SECRET_KEY_BASE") || default_secret_key_base,
   session_cookie_name: System.get_env("SESSION_COOKIE_NAME"),
   session_cookie_signing_salt: System.get_env("SESSION_COOKIE_SIGNING_SALT"),
   session_cookie_encryption_salt: System.get_env("SESSION_COOKIE_ENCRYPTION_SALT")
