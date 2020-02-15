@@ -1,4 +1,9 @@
-<h1>New Slot</h1>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("#timezone").innerHTML = moment.tz.guess();
+  });
+</script>
+<h1>New Slot</h1> Your timezone appears to be <span id="timezone"></span>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.slot_path(@conn, :create)) %>
 

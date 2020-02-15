@@ -4,15 +4,17 @@
 
   <li>
     <strong>Begin:</strong>
-    <%= @slot.begin %>
+    <%= @slot.begin |> Timex.format!("%A %d %b %Y at %H:%M (%Z)", :strftime) %>
   </li>
 
   <li>
     <strong>Duration:</strong>
-    <%= @slot.duration %>
+    <%= Timex.Duration.from_minutes(@slot.duration) |> Timex.Format.Duration.Formatters.Humanized.format %>
   </li>
 
 </ul>
 
-<span><%= link "Edit", to: Routes.slot_path(@conn, :edit, @slot) %></span>
+<%= if @conn.assigns.user != nil and @conn.assigns.user.id == @slot.user_id do %>
+  <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, @slot) %></span>
+<% end %>
 <span><%= link "Back", to: Routes.slot_path(@conn, :index) %></span>

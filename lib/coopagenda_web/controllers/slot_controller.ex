@@ -4,6 +4,9 @@ defmodule CoopagendaWeb.SlotController do
   alias Coopagenda.Agenda
   alias Coopagenda.Agenda.Slot
 
+  plug CoopagendaWeb.Plugs.RequireAdmin when action in [:new, :create, :edit, :update, :delete]
+  plug :check_slot_owner when action in [:update, :edit, :delete]
+
   def index(conn, _params) do
     slots = Agenda.list_slots()
     render(conn, "index.html", slots: slots)
@@ -15,7 +18,7 @@ defmodule CoopagendaWeb.SlotController do
   end
 
   def create(conn, %{"slot" => slot_params}) do
-    case Agenda.create_slot(slot_params) do
+    case Agenda.create_slot(conn.assigns.user, slot_params) do
       {:ok, slot} ->
         conn
         |> put_flash(:info, "Slot created successfully.")
@@ -58,5 +61,18 @@ defmodule CoopagendaWeb.SlotController do
     conn
     |> put_flash(:info, "Slot deleted successfully.")
     |> redirect(to: Routes.slot_path(conn, :index))
+  end
+
+  def check_slot_owner(conn, _params) do
+    %{params: %{"id" => slot_id}} = conn
+
+    if Agenda.get_slot!(slot_id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You cannot edit that")
+      |> redirect(to: Routes.slot_path(conn, :index))
+      |> halt()
+    end
   end
 end

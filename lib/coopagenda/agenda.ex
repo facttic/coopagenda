@@ -7,6 +7,7 @@ defmodule Coopagenda.Agenda do
   alias Coopagenda.Repo
 
   alias Coopagenda.Agenda.Slot
+  alias Coopagenda.Accounts.User
 
   @doc """
   Returns the list of slots.
@@ -42,15 +43,16 @@ defmodule Coopagenda.Agenda do
 
   ## Examples
 
-      iex> create_slot(%{field: value})
+      iex> create_slot(user, %{field: value})
       {:ok, %Slot{}}
 
-      iex> create_slot(%{field: bad_value})
+      iex> create_slot(user, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_slot(attrs \\ %{}) do
-    %Slot{}
+  def create_slot(%User{} = user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:slots)
     |> Slot.changeset(attrs)
     |> Repo.insert()
   end

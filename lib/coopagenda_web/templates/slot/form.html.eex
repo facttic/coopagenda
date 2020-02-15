@@ -9,7 +9,7 @@
   <%= datetime_select f, :begin %>
   <%= error_tag f, :begin %>
 
-  <%= label f, :duration %>
+  <%= label f, :duration, "Duration (in minutes)" %>
   <%= number_input f, :duration %>
   <%= error_tag f, :duration %>
 

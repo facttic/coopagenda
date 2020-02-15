@@ -3,7 +3,6 @@ defmodule CoopagendaWeb.AuthController do
   plug Ueberauth
 
   alias Coopagenda.Accounts
-  alias Coopagenda.Accounts.User
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     user_params = %{avatar: auth.info.image, email: auth.info.email, provider: Atom.to_string(auth.provider)}

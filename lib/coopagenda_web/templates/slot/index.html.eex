@@ -12,17 +12,25 @@
   <tbody>
 <%= for slot <- @slots do %>
     <tr>
-      <td><%= slot.begin %></td>
-      <td><%= slot.duration %></td>
+      <td>
+        <%= slot.begin |> Timex.format!("%A %d %b %Y at %H:%M (%Z)", :strftime) %>
+      </td>
+      <td>
+        <%= Timex.Duration.from_minutes(slot.duration) |> Timex.Format.Duration.Formatters.Humanized.format %>
+      </td>
 
       <td>
         <span><%= link "Show", to: Routes.slot_path(@conn, :show, slot) %></span>
-        <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, slot) %></span>
-        <span><%= link "Delete", to: Routes.slot_path(@conn, :delete, slot), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <%= if @conn.assigns.user != nil and @conn.assigns.user.id == slot.user_id do %>
+          <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, slot) %></span>
+          <span><%= link "Delete", to: Routes.slot_path(@conn, :delete, slot), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <% end %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Slot", to: Routes.slot_path(@conn, :new) %></span>
+<%= if @conn.assigns.user != nil and @conn.assigns.user.admin do %>
+  <span><%= link "New Slot", to: Routes.slot_path(@conn, :new) %></span>
+<% end %>

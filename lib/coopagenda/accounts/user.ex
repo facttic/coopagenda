@@ -6,6 +6,7 @@ defmodule Coopagenda.Accounts.User do
     field :avatar, :string
     field :email, :string
     field :provider, :string
+    field :admin, :boolean
     has_many :slots, Coopagenda.Agenda.Slot
     has_many :proposals, Coopagenda.Agenda.Proposal
 
