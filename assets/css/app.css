@@ -1,3 +1,19 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+
+.avatar {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+.mr-1 {
+  margin-right: 4px;
+}
+
+.inline-link {
+  display: inline-block;
+}

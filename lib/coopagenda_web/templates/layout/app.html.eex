@@ -13,11 +13,18 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li>
+            <%= if @conn.assigns[:user] do %>
+              <img src="<%= @conn.assigns[:user].avatar %>" width=20 height=20 class="avatar mr-1">
+              <%= link "Sign out", to: Routes.auth_path(@conn, :signout), class: "inline-link" %>
+            <% else %>
+              <%= link "Sign in with GitHub", to: Routes.auth_path(@conn, :request, "github") %>
+            <% end %>
+            </li>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+        <a href="/" class="phx-logo">
+          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Coopagenda Logo"/>
         </a>
       </section>
     </header>
