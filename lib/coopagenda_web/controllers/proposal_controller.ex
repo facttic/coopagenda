@@ -9,26 +9,30 @@ defmodule CoopagendaWeb.ProposalController do
     render(conn, "index.html", proposals: proposals)
   end
 
-  def new(conn, _params) do
+  def new(conn, %{"slot_id" => slot_id}) do
     changeset = Agenda.change_proposal(%Proposal{})
-    render(conn, "new.html", changeset: changeset)
+    IO.puts "++ new ++"
+    IO.puts slot_id
+    render(conn, "new.html", changeset: changeset, slot_id: slot_id)
   end
 
-  def create(conn, %{"proposal" => proposal_params}) do
-    case Agenda.create_proposal(proposal_params) do
+  def create(conn, %{"proposal" => proposal_params, "slot_id" => slot_id}) do
+    slot = Agenda.get_slot!(slot_id)
+
+    case Agenda.create_proposal(slot, proposal_params) do
       {:ok, proposal} ->
         conn
         |> put_flash(:info, "Proposal created successfully.")
-        |> redirect(to: Routes.proposal_path(conn, :show, proposal))
+        |> redirect(to: Routes.slot_proposal_path(conn, :show, slot_id, proposal))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, slot_id: slot_id)
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id, "slot_id" => slot_id}) do
     proposal = Agenda.get_proposal!(id)
-    render(conn, "show.html", proposal: proposal)
+    render(conn, "show.html", proposal: proposal, slot_id: slot_id)
   end
 
   def edit(conn, %{"id" => id}) do

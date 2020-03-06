@@ -18,8 +18,9 @@ defmodule CoopagendaWeb.Router do
     pipe_through :browser
 
     get "/", SlotController, :index
-    resources "/proposals", ProposalController
-    resources "/slots", SlotController
+    resources "/slots", SlotController do
+      resources "/proposals", ProposalController
+    end
   end
 
   scope "/auth", CoopagendaWeb do

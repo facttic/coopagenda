@@ -29,5 +29,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.proposal_path(@conn, :edit, @proposal) %></span>
-<span><%= link "Back", to: Routes.proposal_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.slot_proposal_path(@conn, :edit, @proposal, @slot_id) %></span>
+<span><%= link "Back", to: Routes.slot_path(@conn, :index) %></span>

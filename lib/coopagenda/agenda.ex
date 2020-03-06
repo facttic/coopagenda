@@ -147,8 +147,9 @@ defmodule Coopagenda.Agenda do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_proposal(attrs \\ %{}) do
-    %Proposal{}
+  def create_proposal(%Slot{} = slot, attrs \\ %{}) do
+    slot
+    |> Ecto.build_assoc(:proposals)
     |> Proposal.changeset(attrs)
     |> Repo.insert()
   end

@@ -21,9 +21,12 @@
 
       <td>
         <span><%= link "Show", to: Routes.slot_path(@conn, :show, slot) %></span>
-        <%= if @conn.assigns.user != nil and @conn.assigns.user.id == slot.user_id do %>
-          <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, slot) %></span>
-          <span><%= link "Delete", to: Routes.slot_path(@conn, :delete, slot), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <%= if @conn.assigns.user != nil do %>
+          <%= if @conn.assigns.user.id == slot.user_id do %>
+            <span><%= link "Edit", to: Routes.slot_path(@conn, :edit, slot) %></span>
+            <span><%= link "Delete", to: Routes.slot_path(@conn, :delete, slot), method: :delete, data: [confirm: "Are you sure?"] %></span>
+          <% end %>
+          <span><%= link "Add a Proposal for this slot", to: Routes.slot_proposal_path(@conn, :new, slot) %></span>
         <% end %>
       </td>
     </tr>
