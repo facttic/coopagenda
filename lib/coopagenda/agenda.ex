@@ -119,6 +119,10 @@ defmodule Coopagenda.Agenda do
     Repo.all(Proposal)
   end
 
+  def get_proposals_by_slot(slot_id) do
+    Repo.all(Proposal, slot_id: slot_id)
+  end
+
   @doc """
   Gets a single proposal.
 

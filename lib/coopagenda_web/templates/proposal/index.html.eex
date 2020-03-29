@@ -22,13 +22,13 @@
       <td><%= proposal.accepted %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.proposal_path(@conn, :show, proposal) %></span>
-        <span><%= link "Edit", to: Routes.proposal_path(@conn, :edit, proposal) %></span>
-        <span><%= link "Delete", to: Routes.proposal_path(@conn, :delete, proposal), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.slot_proposal_path(@conn, :show, proposal, @slot_id) %></span>
+        <span><%= link "Edit", to: Routes.slot_proposal_path(@conn, :edit, proposal, @slot_id) %></span>
+        <span><%= link "Delete", to: Routes.slot_proposal_path(@conn, :delete, proposal, @slot_id), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Proposal", to: Routes.proposal_path(@conn, :new) %></span>
+<span><%= link "New Proposal", to: Routes.slot_proposal_path(@conn, :new, @slot_id) %></span>
