@@ -1,5 +1,5 @@
 <h1>Edit Proposal</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.proposal_path(@conn, :update, @proposal)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.slot_proposal_path(@conn, :update, @proposal.slot_id, @proposal)) %>
 
-<span><%= link "Back", to: Routes.proposal_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.slot_path(@conn, :index) %></span>
