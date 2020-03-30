@@ -19,7 +19,7 @@ defmodule Coopagenda.Agenda do
 
   """
   def list_slots do
-    Repo.all(Slot)
+    Repo.all(Slot) |> Repo.preload(:proposals)
   end
 
   @doc """
