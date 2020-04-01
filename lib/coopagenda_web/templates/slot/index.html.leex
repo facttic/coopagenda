@@ -33,18 +33,18 @@
       </td>
 
       <td>
-        <span><%= live_patch "Show", to: Routes.slot_path(@socket, :show, slot) %></span>
+        <span><%= link "Show", to: Routes.slot_path(@socket, :show, slot) %></span>
         <%= if @user != nil do %>
           <%= if @user.id == slot.user_id do %>
-            <span><%= live_patch "Edit", to: Routes.slot_path(@socket, :edit, slot) %></span>
-            <span><%= live_patch "Delete", to: "#", phx_click: "delete_slot", phx_value_id: slot.id %></span>
+            <span><%= link "Edit", to: Routes.slot_path(@socket, :edit, slot) %></span>
+            <span><%= link "Delete", to: "#", phx_click: "delete_slot", phx_value_id: slot.id %></span>
           <% end %>
         <% end %>
       </td>
 
       <td>
         <%= if @user != nil do %>
-          <span><%= live_patch "Add a Proposal for this slot", to: Routes.slot_proposal_path(@socket, :new, slot) %></span>
+          <span><%= link "Add a Proposal for this slot", to: Routes.slot_proposal_path(@socket, :new, slot) %></span>
         <% end %>
       </td>
     </tr>
@@ -53,5 +53,5 @@
 </table>
 
 <%= if @user != nil and @user.admin do %>
-  <span><%= live_patch "New Slot", to: Routes.slot_new_path(@socket, :new) %></span>
+  <span><%= link "New Slot", to: Routes.slot_path(@socket, :new) %></span>
 <% end %>
