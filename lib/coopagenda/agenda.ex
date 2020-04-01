@@ -65,7 +65,6 @@ defmodule Coopagenda.Agenda do
     |> Ecto.build_assoc(:slots)
     |> Slot.changeset(attrs)
     |> Repo.insert()
-    |> notify_subscribers([:topic, :created])
   end
 
   @doc """
