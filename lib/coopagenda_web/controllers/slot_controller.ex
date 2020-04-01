@@ -3,18 +3,26 @@ defmodule CoopagendaWeb.SlotController do
 
   alias Coopagenda.Agenda
   alias Coopagenda.Agenda.Slot
+  alias CoopagendaWeb.SlotLive
 
   plug CoopagendaWeb.Plugs.RequireAdmin when action in [:new, :create, :edit, :update, :delete]
   plug :check_slot_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
     slots = Agenda.list_slots()
-    render(conn, "index.html", slots: slots)
+
+    live_render(conn, SlotLive.Index, session: %{
+      "user" => conn.assigns.user,
+      "slots" => slots
+    })
   end
 
   def new(conn, _params) do
     changeset = Agenda.change_slot(%Slot{})
-    render(conn, "new.html", changeset: changeset)
+    live_render(conn, SlotLive.New, session: %{
+      "changeset" => changeset,
+      "user" => conn.assigns.user
+    })
   end
 
   def create(conn, %{"slot" => slot_params}) do

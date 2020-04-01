@@ -23,6 +23,7 @@ defmodule CoopagendaWeb do
 
       import Plug.Conn
       import CoopagendaWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias CoopagendaWeb.Router.Helpers, as: Routes
     end
   end
@@ -41,6 +42,7 @@ defmodule CoopagendaWeb do
 
       import CoopagendaWeb.ErrorHelpers
       import CoopagendaWeb.Gettext
+      import Phoenix.LiveView.Helpers
       alias CoopagendaWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +52,8 @@ defmodule CoopagendaWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
+      import Phoenix.LiveDashboard.Router
     end
   end
 
