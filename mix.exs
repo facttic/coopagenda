@@ -33,7 +33,9 @@ defmodule Coopagenda.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.12"},
+      {:telemetry_metrics, ">= 0.0.0"},
+      {:telemetry_poller, ">= 0.0.0"},
+      {:phoenix, "~> 1.4.16"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.1"},
@@ -46,7 +48,9 @@ defmodule Coopagenda.MixProject do
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
       {:timex, "~> 3.5"},
-      {:distillery, "~> 2.1"}
+      {:distillery, "~> 2.1"},
+      {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"},
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 

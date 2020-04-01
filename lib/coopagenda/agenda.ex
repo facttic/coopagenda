@@ -9,6 +9,16 @@ defmodule Coopagenda.Agenda do
   alias Coopagenda.Agenda.Slot
   alias Coopagenda.Accounts.User
 
+  @topic inspect(__MODULE__)
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Coopagenda.PubSub, @topic)
+  end
+
+  def subscribe(topic_id) do
+    Phoenix.PubSub.subscribe(Coopagenda.PubSub, @topic <> "#{topic_id}")
+  end
+
   @doc """
   Returns the list of slots.
 
@@ -55,6 +65,7 @@ defmodule Coopagenda.Agenda do
     |> Ecto.build_assoc(:slots)
     |> Slot.changeset(attrs)
     |> Repo.insert()
+    |> notify_subscribers([:topic, :created])
   end
 
   @doc """
@@ -73,6 +84,7 @@ defmodule Coopagenda.Agenda do
     slot
     |> Slot.changeset(attrs)
     |> Repo.update()
+    |> notify_subscribers([:topic, :updated])
   end
 
   @doc """
@@ -89,6 +101,7 @@ defmodule Coopagenda.Agenda do
   """
   def delete_slot(%Slot{} = slot) do
     Repo.delete(slot)
+    |> notify_subscribers([:topic, :deleted])
   end
 
   @doc """
@@ -103,6 +116,13 @@ defmodule Coopagenda.Agenda do
   def change_slot(%Slot{} = slot) do
     Slot.changeset(slot, %{})
   end
+
+  defp notify_subscribers({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(Coopagenda.PubSub, @topic, {__MODULE__, event, result})
+    Phoenix.PubSub.broadcast(Coopagenda.PubSub, @topic <> "#{result.id}", {__MODULE__, event, result})
+  end
+
+  defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
 
   alias Coopagenda.Agenda.Proposal
 

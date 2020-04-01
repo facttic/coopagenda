@@ -10,6 +10,9 @@ defmodule CoopagendaWeb.Endpoint do
     signing_salt: "hB3OSo8p"
   ]
 
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
+
   socket "/socket", CoopagendaWeb.UserSocket,
     websocket: true,
     longpoll: false
