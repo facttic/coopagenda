@@ -6,6 +6,7 @@ defmodule Coopagenda.Repo.Migrations.CreateUsers do
       add :email, :string
       add :avatar, :string
       add :provider, :string
+      add :admin, :boolean, default: false, null: false
 
       timestamps()
     end

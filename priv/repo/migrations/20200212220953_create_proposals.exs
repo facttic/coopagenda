@@ -9,7 +9,7 @@ defmodule Coopagenda.Repo.Migrations.CreateProposals do
       add :hosting_coop, :string
       add :accepted, :boolean, default: false, null: false
       add :user_id, references(:users, on_delete: :nothing)
-      add :slot_id, references(:slots, on_delete: :nothing)
+      add :slot_id, references(:slots, on_delete: :delete_all)
 
       timestamps()
     end
