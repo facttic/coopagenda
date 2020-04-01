@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :begin %>
-  <%= datetime_select f, :begin %>
+  <%= datetime_select f, :begin, year: [options: DateTime.utc_now.year..DateTime.utc_now.year+2] %>
   <%= error_tag f, :begin %>
 
   <%= label f, :duration, "Duration (in minutes)" %>

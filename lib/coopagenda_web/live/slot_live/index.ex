@@ -6,29 +6,45 @@ defmodule CoopagendaWeb.SlotLive.Index do
 
   def mount(_params, %{"user" => user, "slots" => slots}, socket) do
     if connected?(socket), do: Agenda.subscribe()
-    {:ok, assign(socket, slots: slots, user: user, page_title: "Slots list")}
+    {:ok,
+      socket
+      |> assign(slots: slots)
+      |> assign(user: user)
+      |> assign(page_title: "Slots list")
+      |> assign(default_date_time: DateTime.utc_now)
+    }
   end
 
   def render(assigns), do: SlotView.render("index.html", assigns)
 
-  # defp fetch(socket, user) do
-  #   slots = Agenda.list_slots()
-  #   assign(socket, slots: slots, user: user, page_title: "Slots list")
-  # end
-
   def handle_event("delete_slot", %{"id" => slot_id}, socket) do
     Agenda.get_slot!(slot_id)
     |> Agenda.delete_slot()
+    {:noreply, fetch_slots(socket)}
+  end
+
+  def handle_event("date_change", %{"filter" => %{"date" => %{"day" => day, "month" => month, "year" => year}}}, socket) do
+    slots = Agenda.list_slots_by_date(year, month, day)
+    {:ok, default_date_time, _} = DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
+
+    {:noreply,
+      socket
+      |> assign(slots: slots)
+      |> assign(default_date_time: default_date_time)
+    }
+  end
+
+  def handle_event("date_change", _nada, socket) do
+    IO.puts "+++ entra por la nada +++"
     {:noreply, socket}
   end
 
-  def handle_info({Agenda, [:slot, second_parameter], third_parameter}, socket) do
-    IO.puts "++++++++++"
-    IO.inspect second_parameter
-    IO.inspect third_parameter
-    IO.inspect socket
-    IO.puts "++++++++++"
+  def handle_info({Agenda, [:topic, _], _}, socket) do
+    {:noreply, fetch_slots(socket)}
+  end
 
-    {:noreply, socket}
+  defp fetch_slots(socket) do
+    slots = Agenda.list_slots()
+    assign(socket, slots: slots)
   end
 end

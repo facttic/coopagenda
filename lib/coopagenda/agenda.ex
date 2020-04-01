@@ -32,6 +32,19 @@ defmodule Coopagenda.Agenda do
     Repo.all(Slot) |> Repo.preload(:proposals)
   end
 
+  def list_slots_by_date(year, month, day) do
+    {:ok, start_datetime, 0} =
+      DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
+    {:ok, end_datetime, 0} =
+      DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T23:59:59Z")
+
+    slots = Repo.all from s in Slot,
+             where: s.begin >= ^start_datetime and
+                    s.begin <= ^end_datetime
+    slots
+      |> Repo.preload(:proposals)
+  end
+
   @doc """
   Gets a single slot.
 
@@ -65,6 +78,7 @@ defmodule Coopagenda.Agenda do
     |> Ecto.build_assoc(:slots)
     |> Slot.changeset(attrs)
     |> Repo.insert()
+    |> notify_subscribers([:topic, :created])
   end
 
   @doc """
@@ -119,6 +133,7 @@ defmodule Coopagenda.Agenda do
   defp notify_subscribers({:ok, result}, event) do
     Phoenix.PubSub.broadcast(Coopagenda.PubSub, @topic, {__MODULE__, event, result})
     Phoenix.PubSub.broadcast(Coopagenda.PubSub, @topic <> "#{result.id}", {__MODULE__, event, result})
+    {:ok, result}
   end
 
   defp notify_subscribers({:error, reason}, _event), do: {:error, reason}

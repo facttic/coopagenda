@@ -1,3 +1,8 @@
+<%= form_for :filter, "#", [phx_change: "date_change"], fn f -> %>
+  <%= date_select f, "date",
+    year: [options: DateTime.utc_now.year..DateTime.utc_now.year+2],
+    default: @default_date_time %>
+<% end %>
 <h1>Listing Slots</h1>
 
 <table>
