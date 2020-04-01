@@ -19,10 +19,7 @@ defmodule CoopagendaWeb.SlotController do
 
   def new(conn, _params) do
     changeset = Agenda.change_slot(%Slot{})
-    live_render(conn, SlotLive.New, session: %{
-      "changeset" => changeset,
-      "user" => conn.assigns.user
-    })
+    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"slot" => slot_params}) do
