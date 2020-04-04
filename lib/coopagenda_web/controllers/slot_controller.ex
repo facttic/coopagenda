@@ -24,10 +24,15 @@ defmodule CoopagendaWeb.SlotController do
 
   def create(conn, %{"slot" => slot_params}) do
     case Agenda.create_slot(conn.assigns.user, slot_params) do
-      {:ok, slot} ->
+      {:ok, _slot} ->
+        slots = Agenda.list_slots()
+
         conn
         |> put_flash(:info, "Slot created successfully.")
-        |> redirect(to: Routes.slot_path(conn, :show, slot))
+        |> live_render(SlotLive.Index, session: %{
+            "user" => conn.assigns.user,
+            "slots" => slots
+          })
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
