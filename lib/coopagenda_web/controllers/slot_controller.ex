@@ -9,7 +9,7 @@ defmodule CoopagendaWeb.SlotController do
   plug :check_slot_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
-    slots = Agenda.list_slots()
+    slots = fetch()
 
     live_render(conn, SlotLive.Index, session: %{
       "user" => conn.assigns.user,
@@ -25,7 +25,7 @@ defmodule CoopagendaWeb.SlotController do
   def create(conn, %{"slot" => slot_params}) do
     case Agenda.create_slot(conn.assigns.user, slot_params) do
       {:ok, _slot} ->
-        slots = Agenda.list_slots()
+        slots = fetch()
 
         conn
         |> put_flash(:info, "Slot created successfully.")
@@ -84,5 +84,13 @@ defmodule CoopagendaWeb.SlotController do
       |> redirect(to: Routes.slot_path(conn, :index))
       |> halt()
     end
+  end
+
+  defp fetch() do
+    %DateTime{:year => year, :month => month, :day => day} = DateTime.utc_now
+
+    Agenda.list_slots_by_date(year |> Integer.to_string(),
+      month |> Integer.to_string(),
+      day |> Integer.to_string())
   end
 end

@@ -34,9 +34,9 @@ defmodule Coopagenda.Agenda do
 
   def list_slots_by_date(year, month, day) do
     {:ok, start_datetime, 0} =
-      DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
+      DateTime.from_iso8601("#{year |> String.pad_leading(4, "0")}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
     {:ok, end_datetime, 0} =
-      DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T23:59:59Z")
+      DateTime.from_iso8601("#{year |> String.pad_leading(4, "0")}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T23:59:59Z")
 
     slots = Repo.all from s in Slot,
              where: s.begin >= ^start_datetime and

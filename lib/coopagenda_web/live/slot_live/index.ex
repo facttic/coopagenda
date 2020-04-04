@@ -25,7 +25,8 @@ defmodule CoopagendaWeb.SlotLive.Index do
 
   def handle_event("date_change", %{"filter" => %{"date" => %{"day" => day, "month" => month, "year" => year}}}, socket) do
     slots = Agenda.list_slots_by_date(year, month, day)
-    {:ok, default_date_time, _} = DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
+    {:ok, default_date_time, _} =
+      DateTime.from_iso8601("#{year}-#{month |> String.pad_leading(2, "0")}-#{day |> String.pad_leading(2, "0")}T00:00:00Z")
 
     {:noreply,
       socket
@@ -34,17 +35,17 @@ defmodule CoopagendaWeb.SlotLive.Index do
     }
   end
 
-  def handle_event("date_change", _nada, socket) do
-    IO.puts "+++ entra por la nada +++"
-    {:noreply, socket}
-  end
-
   def handle_info({Agenda, [:topic, _], _}, socket) do
     {:noreply, fetch_slots(socket)}
   end
 
   defp fetch_slots(socket) do
-    slots = Agenda.list_slots()
-    assign(socket, slots: slots)
+    %DateTime{:year => year, :month => month, :day => day} = DateTime.utc_now
+
+    socket
+      |> assign(slots:
+        Agenda.list_slots_by_date(year |> Integer.to_string(),
+          month |> Integer.to_string(),
+          day |> Integer.to_string()))
   end
 end
