@@ -10,8 +10,12 @@ use Mix.Config
 config :coopagenda,
   ecto_repos: [Coopagenda.Repo]
 
+config :coopagenda_web,
+  ecto_repos: [HelloReact.Repo],
+  generators: [context_app: :coopagenda]
+
 # Configures the endpoint
-config :coopagenda, CoopagendaWeb.Endpoint,
+config :coopagenda_web, CoopagendaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Cm6+1FkX19z2bc76P8Bmr6IYgvkuvOOsYRxODnZgd+gPrNPK3Ru/GIgKApmrRkOP",
   render_errors: [view: CoopagendaWeb.ErrorView, accepts: ~w(html json)],

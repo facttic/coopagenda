@@ -1,5 +1,5 @@
 defmodule CoopagendaWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :coopagenda
+  use Phoenix.Endpoint, otp_app: :coopagenda_web
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -23,7 +23,7 @@ defmodule CoopagendaWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :coopagenda,
+    from: :coopagenda_web,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 

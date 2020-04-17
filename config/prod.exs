@@ -8,7 +8,7 @@ config :coopagenda, Coopagenda.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: false
 
-config :coopagenda, CoopagendaWeb.Endpoint,
+config :coopagenda_web, CoopagendaWeb.Endpoint,
   load_from_system_env: true,
   http: [port: {:system, "PORT"}],
   url: [host: {:system, "HOST"}, port: {:system, "PORT"}],
