@@ -26,7 +26,7 @@ config :coopagenda, CoopagendaWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
+      cd: Path.expand("../apps/coopagenda_web/assets", __DIR__)
     ]
   ]
 
