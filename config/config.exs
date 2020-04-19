@@ -11,7 +11,7 @@ config :coopagenda,
   ecto_repos: [Coopagenda.Repo]
 
 config :coopagenda_web,
-  ecto_repos: [HelloReact.Repo],
+  ecto_repos: [Coopagenda.Repo],
   generators: [context_app: :coopagenda]
 
 # Configures the endpoint
@@ -38,7 +38,7 @@ import_config "#{Mix.env()}.exs"
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: { Ueberauth.Strategy.Github, [default_scope: "user"] }
+    github: {Ueberauth.Strategy.Github, [default_scope: "user"]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
