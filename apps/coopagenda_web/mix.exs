@@ -52,7 +52,9 @@ defmodule CoopagendaWeb.MixProject do
       {:telemetry_poller, ">= 0.0.0"},
       {:timex, "~> 3.5"},
       {:ueberauth, "~> 0.6"},
-      {:ueberauth_github, "~> 0.7"}
+      {:ueberauth_github, "~> 0.7"},
+      {:ja_serializer, "~> 0.15.0"},
+      {:guardian, "~> 2.1"}
     ]
   end
 
