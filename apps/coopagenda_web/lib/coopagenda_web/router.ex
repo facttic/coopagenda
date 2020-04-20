@@ -15,33 +15,17 @@ defmodule CoopagendaWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", CoopagendaWeb do
+    pipe_through :api
+
+    resources "/slots", SlotController do
+      resources "/proposals", ProposalController
+    end
+  end
+
   scope "/", CoopagendaWeb do
     pipe_through :browser
 
     get "/*path", PageController, :index
   end
-
-  # scope "/", CoopagendaWeb do
-  #   pipe_through :browser
-
-  #   live_dashboard "/dashboard", metrics: CoopagendaWeb.Telemetry
-
-  #   get "/", SlotController, :index
-  #   resources "/slots", SlotController do
-  #     resources "/proposals", ProposalController
-  #   end
-  # end
-
-  # scope "/auth", CoopagendaWeb do
-  #   pipe_through :browser
-
-  #   get "/signout", AuthController, :signout
-  #   get "/:provider", AuthController, :request
-  #   get "/:provider/callback", AuthController, :callback
-  # end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", CoopagendaWeb do
-  #   pipe_through :api
-  # end
 end

@@ -6,9 +6,9 @@ defmodule Coopagenda.AccountsTest do
   describe "users" do
     alias Coopagenda.Accounts.User
 
-    @valid_attrs %{avatar: "some avatar", email: "some email", provider: "some provider"}
-    @update_attrs %{avatar: "some updated avatar", email: "some updated email", provider: "some updated provider"}
-    @invalid_attrs %{avatar: nil, email: nil, provider: nil}
+    @valid_attrs %{admin: true, avatar: "some avatar", email: "some email", provider: "some provider"}
+    @update_attrs %{admin: false, avatar: "some updated avatar", email: "some updated email", provider: "some updated provider"}
+    @invalid_attrs %{admin: nil, avatar: nil, email: nil, provider: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -31,6 +31,7 @@ defmodule Coopagenda.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
+      assert user.admin == true
       assert user.avatar == "some avatar"
       assert user.email == "some email"
       assert user.provider == "some provider"
@@ -43,6 +44,7 @@ defmodule Coopagenda.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
+      assert user.admin == false
       assert user.avatar == "some updated avatar"
       assert user.email == "some updated email"
       assert user.provider == "some updated provider"
