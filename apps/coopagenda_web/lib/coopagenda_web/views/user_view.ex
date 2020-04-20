@@ -13,6 +13,7 @@ defmodule CoopagendaWeb.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       avatar: user.avatar,
+      username: user.username,
       email: user.email,
       provider: user.provider,
       admin: user.admin}

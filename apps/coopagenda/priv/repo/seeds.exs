@@ -4,6 +4,7 @@ alias Coopagenda.Agenda
 {:ok, user1} =
   Accounts.create_user(%{
     admin: true,
+    username: "peter",
     avatar: "some avatar",
     email: "uriburu@gmail.net",
     provider: "builthub"
@@ -54,6 +55,7 @@ Agenda.create_proposal(slot2, user1.id, %{
 {:ok, user2} =
   Accounts.create_user(%{
     admin: true,
+    username: "juanca",
     avatar: "some other avatar",
     email: "oromoro@gmail.net",
     provider: "swifthub"
@@ -74,6 +76,7 @@ Agenda.create_proposal(slot2, user2.id, %{
 
 Accounts.create_user(%{
   admin: false,
+  username: "notfalse",
   avatar: "not an admins avatar",
   email: "kristiankamaro@gmail.net",
   provider: "corobuhub"

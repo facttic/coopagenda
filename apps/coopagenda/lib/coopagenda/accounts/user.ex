@@ -3,6 +3,7 @@ defmodule Coopagenda.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :username, :string
     field :avatar, :string
     field :email, :string
     field :provider, :string
@@ -17,7 +18,7 @@ defmodule Coopagenda.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :avatar, :provider, :admin])
-    |> validate_required([:email, :avatar, :provider])
+    |> cast(attrs, [:email, :username, :avatar, :provider, :admin])
+    |> validate_required([:email, :username, :avatar, :provider])
   end
 end
