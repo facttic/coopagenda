@@ -4,8 +4,19 @@ defmodule CoopagendaWeb.AuthController do
 
   alias Coopagenda.Accounts
 
+  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
+    conn
+    |> put_status(401)
+    |> render(CoopagendaWeb.ErrorView, "401.json")
+  end
+
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    user_params = %{avatar: auth.info.image, email: auth.info.email, provider: Atom.to_string(auth.provider)}
+    user_params = %{
+      username: auth.info.nickname,
+      avatar: auth.info.image,
+      email: auth.info.email,
+      provider: Atom.to_string(auth.provider)
+    }
 
     signin(conn, user_params)
   end
@@ -19,14 +30,16 @@ defmodule CoopagendaWeb.AuthController do
   defp signin(conn, user_params) do
     case insert_or_update_user(user_params) do
       {:ok, user} ->
+        {:ok, token, _claims} = Accounts.Guardian.encode_and_sign(user)
+
         conn
-        |> put_flash(:info, "Welcome back!")
-        |> put_session(:user_id, user.id)
-        |> redirect(to: Routes.slot_path(conn, :index))
+        |> resp(:found, "")
+        |> put_resp_header("Authorization", token)
+        |> put_resp_header("location", "/#welcome")
+
       {:error, _reason} ->
         conn
-        |> put_flash(:error, "Error signing in")
-        |> redirect(to: Routes.slot_path(conn, :index))
+        |> redirect(to: "/#error")
     end
   end
 
@@ -34,8 +47,9 @@ defmodule CoopagendaWeb.AuthController do
     case Accounts.get_user_by_email(user_params.email) do
       nil ->
         Accounts.create_user(user_params)
+
       user ->
-        {:ok, user}
+        Accounts.update_user(user, user_params)
     end
   end
 end

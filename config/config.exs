@@ -44,3 +44,7 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
+config :coopagenda, Coopagenda.Accounts.Guardian,
+  issuer: "coopagenda",
+  secret_key: "IleUlDrRYUsgmaieUFRW7Bk1df8YwIxswfOhTwwsTXly6g36w+wFQedFC7fevx8M"

@@ -18,6 +18,7 @@ function App({ slotsStore }: any) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/auth/github">Login with github</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
