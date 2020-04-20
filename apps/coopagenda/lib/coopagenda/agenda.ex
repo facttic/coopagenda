@@ -74,13 +74,11 @@ defmodule Coopagenda.Agenda do
 
   """
   def create_slot(%User{} = user, attrs \\ %{}) do
-    IO.puts "Why"
-
     user
     |> Ecto.build_assoc(:slots)
     |> Slot.changeset(attrs)
     |> Repo.insert()
-    |> notify_subscribers([:topic, :created])
+    # |> notify_subscribers([:topic, :created])
   end
 
   @doc """
@@ -187,9 +185,9 @@ defmodule Coopagenda.Agenda do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_proposal(%Slot{} = slot, attrs \\ %{}) do
+  def create_proposal(%Slot{} = slot, user_id, attrs \\ %{}) do
     slot
-    |> Ecto.build_assoc(:proposals)
+    |> Ecto.build_assoc(:proposals, user_id: user_id)
     |> Proposal.changeset(attrs)
     |> Repo.insert()
   end

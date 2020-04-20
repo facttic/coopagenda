@@ -14,6 +14,7 @@ defmodule Coopagenda.Repo.Migrations.CreateProposals do
       timestamps()
     end
 
+    create index(:proposals, [:hosting_coop])
     create index(:proposals, [:user_id])
     create index(:proposals, [:slot_id])
   end

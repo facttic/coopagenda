@@ -10,6 +10,7 @@ defmodule Coopagenda.Repo.Migrations.CreateSlots do
       timestamps()
     end
 
+    create index(:slots, [:begin])
     create index(:slots, [:user_id])
   end
 end

@@ -6,7 +6,8 @@ defmodule Coopagenda.Accounts.User do
     field :avatar, :string
     field :email, :string
     field :provider, :string
-    field :admin, :boolean
+    field :admin, :boolean, default: false
+
     has_many :slots, Coopagenda.Agenda.Slot
     has_many :proposals, Coopagenda.Agenda.Proposal
 
@@ -16,7 +17,7 @@ defmodule Coopagenda.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :avatar, :provider])
+    |> cast(attrs, [:email, :avatar, :provider, :admin])
     |> validate_required([:email, :avatar, :provider])
   end
 end
