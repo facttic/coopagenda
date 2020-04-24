@@ -5,8 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import * as yup from "yup";
 
-import { addSlot, editSlot, getSlots } from "../api/slots";
-import { Slot, SlotFormProps } from "../interfaces";
+import { addSlot, editSlot, getSlots } from "../../api/slots";
 
 const schema = yup.object({
   begin: yup.date().required("Begin datetime is required"),
@@ -17,15 +16,15 @@ const schema = yup.object({
     .max(180, "Three hours is the max a slot can last"),
 });
 
-const SlotForm: React.FC<SlotFormProps> = ({
+const SlotForm = ({
   edit,
   onSave,
   slot,
   onCancelAdd,
   onCancelEdit,
   slotsStore,
-}: SlotFormProps) => {
-  const handleSubmit = async (event: Slot) => {
+}) => {
+  const handleSubmit = async (event) => {
     const isValid = await schema.validate(event);
 
     if (!isValid) {
@@ -47,7 +46,7 @@ const SlotForm: React.FC<SlotFormProps> = ({
       <Formik
         validationSchema={schema}
         onSubmit={handleSubmit}
-        initialValues={(slot || {}) as any}
+        initialValues={(slot || {})}
       >
         {({
           handleSubmit,
@@ -57,7 +56,7 @@ const SlotForm: React.FC<SlotFormProps> = ({
           touched,
           isInvalid,
           errors,
-        }: any) => (
+        }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} md="12" controlId="begin">

@@ -2,9 +2,9 @@ import { observable } from "mobx";
 import { Slot } from "./interfaces";
 
 class SlotsStore {
-  @observable slots: Slot[] = [];
+  @observable slots = [];
 
-  setSlots(slots: Slot[]) {
+  setSlots(slots) {
     this.slots = slots;
   }
 }

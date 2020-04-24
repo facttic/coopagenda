@@ -5,12 +5,11 @@ import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import SlotForm from "../components/SlotForm";
-import { getSlots, deleteSlot } from "../api/slots";
+import SlotForm from "../Slots/SlotForm";
+import { getSlots, deleteSlot } from "../../api/slots";
 import { observer } from "mobx-react";
-import { Slot, HomePageProps } from "../interfaces";
 
-const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
+const HomeAgenda = ({ slotsStore }) => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [initialized, setInitialized] = useState(false);
@@ -27,7 +26,7 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
   const cancelAddModal = () => {
     setOpenAddModal(false);
   };
-  const editSlot = (slot: Slot) => {
+  const editSlot = (slot) => {
     setSelectedSlot(slot);
     setOpenEditModal(true);
   };
@@ -39,7 +38,7 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
     slotsStore.setSlots(response.data);
     setInitialized(true);
   };
-  const deleteSelectedSlot = async (id: number) => {
+  const deleteSelectedSlot = async (id) => {
     await deleteSlot(id);
     getData();
   };
@@ -61,8 +60,8 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
         <Modal.Body>
           <SlotForm
             edit={false}
-            onSave={closeModal.bind(this) as any}
-            onCancelAdd={cancelAddModal as any}
+            onSave={closeModal.bind(this)}
+            onCancelAdd={cancelAddModal}
             slotsStore={slotsStore}
           />
         </Modal.Body>
@@ -75,7 +74,7 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
           <SlotForm
             edit={true}
             onSave={closeModal.bind(this)}
-            slot={selectedSlot as Slot}
+            slot={selectedSlot}
             onCancelEdit={cancelEditModal}
             slotsStore={slotsStore}
           />
@@ -94,7 +93,7 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
           </tr>
         </thead>
         <tbody>
-          {slotsStore.slots.map((c: any) => (
+          {/* {slotsStore.slots.map((c: any) => (
             <tr key={c.id}>
               <td>{c.begin}</td>
               <td>{c.duration}</td>
@@ -115,11 +114,11 @@ const HomePage: React.FC<HomePageProps> = ({ slotsStore }: HomePageProps) => {
                 </Button>
               </td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </Table>
     </div>
   );
 };
 
-export default observer(HomePage);
+export default observer(HomeAgenda);

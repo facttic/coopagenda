@@ -1,5 +1,6 @@
 const path = require("path");
 const glob = require("glob");
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -8,12 +9,12 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
-      new TerserPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new TerserPlugin({ cache: true, parallel: true, sourceMap: true }),
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
   entry: {
-    app: "./js/index.tsx"
+    app: "./js/index.jsx",
   },
   output: {
     filename: "index.js",
@@ -22,28 +23,30 @@ module.exports = (env, options) => ({
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
           {
             loader: "babel-loader",
           },
-          {
-            loader: "ts-loader",
-          },
         ],
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
+  devtool: false,
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".js", ".jsx", ".css", ".sass", ".scss"],
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "../css/app.css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
+    new webpack.EvalSourceMapDevToolPlugin({
+      filename: "[name].js.map",
+      exclude: ["vendor.js"],
+    }),
   ],
 });

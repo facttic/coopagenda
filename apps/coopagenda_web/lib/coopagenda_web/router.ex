@@ -23,13 +23,13 @@ defmodule CoopagendaWeb.Router do
     end
   end
 
-  scope "/auth", CoopagendaWeb do
-    pipe_through :browser
+  # scope "/auth", CoopagendaWeb do
+  #   pipe_through :browser
 
-    get "/signout", AuthController, :signout
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
-  end
+  #   get "/signout", AuthController, :signout
+  #   get "/:provider", AuthController, :request
+  #   get "/:provider/callback", AuthController, :callback
+  # end
 
   scope "/", CoopagendaWeb do
     pipe_through :browser
