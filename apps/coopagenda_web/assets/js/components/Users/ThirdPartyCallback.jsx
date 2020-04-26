@@ -1,12 +1,21 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React, { useEffect } from "react";
+import { withRouter, useHistory } from "react-router-dom";
 const queryString = require("query-string");
 
 import LoadingFrame from "../Utils/LoadingFrame";
 import { signIn } from "../../API/users";
 
 const ThirdPartyCallback = ({ location }) => {
-  console.log(queryString.parse(location.search));
+  const history = useHistory();
+
+  useEffect(() => {
+    const runSignIn = () => {
+      const parsedQueryString = queryString.parse(location.search);
+      // FILL STATE
+      history.push("/");
+    };
+    runSignIn();
+  }, []);
 
   return <LoadingFrame title="Authenticating" />;
 };

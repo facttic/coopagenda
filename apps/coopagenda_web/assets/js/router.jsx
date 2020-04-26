@@ -9,7 +9,7 @@ const CARouter = () => (
   <Router>
     <Layout>
       <Switch>
-        <Route path="/auth/:provider/callback" component={ThirdPartyCallback} />
+        <Route path="/welcome" component={ThirdPartyCallback} />
         <Route path="/">
           <h1>Home</h1>
         </Route>

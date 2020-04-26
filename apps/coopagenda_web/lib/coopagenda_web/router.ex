@@ -18,18 +18,19 @@ defmodule CoopagendaWeb.Router do
   scope "/api", CoopagendaWeb do
     pipe_through :api
 
+    resources "/users", UserController
+
     resources "/slots", SlotController do
       resources "/proposals", ProposalController
     end
   end
 
-  # scope "/auth", CoopagendaWeb do
-  #   pipe_through :browser
+  scope "/auth", CoopagendaWeb do
+    pipe_through :api
 
-  #   get "/signout", AuthController, :signout
-  #   get "/:provider", AuthController, :request
-  #   get "/:provider/callback", AuthController, :callback
-  # end
+    get "/:provider/callback", AuthController, :callback
+    get "/signout", AuthController, :signout
+  end
 
   scope "/", CoopagendaWeb do
     pipe_through :browser

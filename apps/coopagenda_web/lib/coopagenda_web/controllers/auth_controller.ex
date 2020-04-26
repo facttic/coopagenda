@@ -4,10 +4,10 @@ defmodule CoopagendaWeb.AuthController do
 
   alias Coopagenda.Accounts
 
-  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
+  def callback(%{assigns: %{ueberauth_failure: fails}} = conn, _params) do
     conn
     |> put_status(401)
-    |> render(CoopagendaWeb.ErrorView, "401.json")
+    |> redirect(to: "/welcome?error=#{fails}")
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
@@ -34,12 +34,15 @@ defmodule CoopagendaWeb.AuthController do
 
         conn
         |> resp(:found, "")
-        |> put_resp_header("Authorization", token)
-        |> put_resp_header("location", "/#welcome")
+        |> put_resp_header(
+          "location",
+          "/welcome?userId=#{user.id}&username=#{user.username}&admin=#{user.admin}&userAvatar=#{user.avatar}&token=#{token}"
+        )
 
-      {:error, _reason} ->
+      {:error, reason} ->
         conn
-        |> redirect(to: "/#error")
+        |> put_status(401)
+        |> redirect(to: "/welcome?error=#{reason}")
     end
   end
 

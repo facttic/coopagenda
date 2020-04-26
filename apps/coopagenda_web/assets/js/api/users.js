@@ -1,3 +1,3 @@
 import baseInstance from "./base_instance";
 
-export const signIn = () => baseInstance.post(login);
+export const signIn = (provider, userParams) => baseInstance.post(`/auth/${provider}/signin`, userParams);
