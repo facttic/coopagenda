@@ -37,7 +37,7 @@ module.exports = (env, options) => ({
       },
     ],
   },
-  devtool: false,
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
     extensions: [".js", ".jsx", ".css", ".sass", ".scss"],
   },

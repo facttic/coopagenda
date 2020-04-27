@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "eslint.workingDirectories": [
+    {
+      "changeProcessCWD": true,
+      "directory": "./apps/coopagenda_web/assets"
+    }
+  ]
+}
