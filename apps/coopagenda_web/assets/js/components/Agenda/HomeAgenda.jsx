@@ -50,7 +50,7 @@ const HomeAgenda = ({ slotsStore }) => {
   });
 
   return (
-    <div className="home-page">
+    <div>
       <h1>Slots</h1>
 
       <Modal show={openAddModal} onHide={closeModal}>

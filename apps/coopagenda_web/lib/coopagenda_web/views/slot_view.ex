@@ -1,6 +1,7 @@
 defmodule CoopagendaWeb.SlotView do
   use CoopagendaWeb, :view
   alias CoopagendaWeb.SlotView
+  alias CoopagendaWeb.ProposalView
 
   def render("index.json", %{slots: slots}) do
     %{data: render_many(slots, SlotView, "slot.json")}
@@ -11,8 +12,11 @@ defmodule CoopagendaWeb.SlotView do
   end
 
   def render("slot.json", %{slot: slot}) do
-    %{id: slot.id,
+    %{
+      id: slot.id,
       begin: slot.begin,
-      duration: slot.duration}
+      duration: slot.duration,
+      proposals: render_many(slot.proposals, ProposalView, "proposal.json")
+    }
   end
 end

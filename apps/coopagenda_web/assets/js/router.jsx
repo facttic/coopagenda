@@ -2,17 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Layout from "./components/App/Layout";
-import HomeAgenda from "./components/Agenda/HomeAgenda";
-import ThirdPartyCallback from './components/Users/ThirdPartyCallback'
+import SlotsPage from "./components/Slots/SlotsPage";
+import ThirdPartyCallback from "./components/Users/ThirdPartyCallback";
 
 const CARouter = () => (
   <Router>
     <Layout>
       <Switch>
         <Route path="/welcome" component={ThirdPartyCallback} />
-        <Route path="/">
-          <h1>Home</h1>
-        </Route>
+        <Route path="/slots" component={SlotsPage} />
       </Switch>
     </Layout>
   </Router>

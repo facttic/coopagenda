@@ -5,7 +5,7 @@ import { githubAuthUrl } from "../../lib/third_party_auth";
 import { makeid } from "../../lib/random_string";
 
 const ThirdPartyAuthList = () => (
-  <div className="third-party-auth">
+  <div>
     <ThirdPartyServiceButton
       url={githubAuthUrl(makeid(16))}
       icon={["fab", "github"]}

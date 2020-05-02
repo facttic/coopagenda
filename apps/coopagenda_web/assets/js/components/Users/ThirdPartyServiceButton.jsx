@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import RawIcon from "../Utils/RawIcon";
@@ -22,5 +23,13 @@ const ThirdPartyServiceButton = ({
     <RawIcon icon={icon} />
   </a>
 );
+
+ThirdPartyServiceButton.propTypes = {
+  url: PropTypes.string.isRequired,
+  icon: PropTypes.array.isRequired,
+  className: PropTypes.string,
+  newTab: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+};
 
 export default ThirdPartyServiceButton;

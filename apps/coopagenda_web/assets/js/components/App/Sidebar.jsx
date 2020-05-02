@@ -1,7 +1,7 @@
 import React from "react";
 
 const Sidebar = () => {
-  return <>Soy la sidebar</>
-}
+  return <>Me gustaría ser la sidebar</>;
+};
 
 export default Sidebar;
