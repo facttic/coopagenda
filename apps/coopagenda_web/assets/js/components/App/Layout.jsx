@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
@@ -12,6 +13,10 @@ const Layout = ({ children }) => {
       {children}
     </Container>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;
