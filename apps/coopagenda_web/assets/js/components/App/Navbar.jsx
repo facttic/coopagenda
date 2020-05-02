@@ -6,7 +6,7 @@ import ThirdPartyAuthList from "../Users/ThirdPartyAuthList";
 
 const CANavbar = () => {
   return (
-    <Navbar className="bg-light justify-content-between" bg="secondary" expand="sm">
+    <Navbar className="bg-light justify-content-between" expand="sm">
       <Logo />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
