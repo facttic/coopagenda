@@ -11,6 +11,8 @@ const userReducer = (state = initialState.user, action) => {
         receivedAt: action.receivedAt,
         isFetching: false,
       };
+    case types.LOGOUT_USER:
+      return initialState.user;
     default:
       return state;
   }

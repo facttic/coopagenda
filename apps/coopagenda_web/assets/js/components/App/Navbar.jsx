@@ -1,21 +1,37 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Image } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import Logo from "./Logo";
 import ThirdPartyAuthList from "../Users/ThirdPartyAuthList";
+import LoggedUser from "../Users/LoggedUser";
 
-const CANavbar = () => {
+const CANavbar = ({ user }) => {
+  console.log("USER", user);
   return (
-    <Navbar className="bg-light justify-content-between" expand="sm">
+    <Navbar className="bg-light justify-content-between">
       <Logo />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
-          <ThirdPartyAuthList />
+          {user.receivedAt ? (
+            <LoggedUser user={user} />
+          ) : (
+            <ThirdPartyAuthList />
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default CANavbar;
+CANavbar.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+function mapStateToProps({ user }) {
+  return { user };
+}
+
+export default connect(mapStateToProps)(CANavbar);

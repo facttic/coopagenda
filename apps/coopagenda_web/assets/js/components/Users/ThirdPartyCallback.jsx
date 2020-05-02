@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 const queryString = require("query-string");
 
 import { receiveUser } from "../../actions/user_actions";
+import { setToken } from "../../api/base_instance";
 import LoadingFrame from "../Utils/LoadingFrame";
 
 const ThirdPartyCallback = ({ location, dispatch }) => {
@@ -15,6 +16,8 @@ const ThirdPartyCallback = ({ location, dispatch }) => {
       const { admin, token, userAvatar, username } = queryString.parse(
         location.search
       );
+      setToken(token);
+
       dispatch(
         receiveUser(
           {
@@ -40,10 +43,4 @@ ThirdPartyCallback.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToPropos = ({ user }, _ownProps) => {
-  return {
-    user,
-  };
-};
-
-export default withRouter(connect(mapStateToPropos)(ThirdPartyCallback));
+export default withRouter(connect()(ThirdPartyCallback));
