@@ -27,7 +27,7 @@ const ThirdPartyCallback = ({ location, dispatch }) => {
           token
         )
       );
-      // history.push("/");
+      return history.push("/");
     };
     runSignIn();
   }, []);
