@@ -8,7 +8,6 @@ import ThirdPartyAuthList from "../Users/ThirdPartyAuthList";
 import LoggedUser from "../Users/LoggedUser";
 
 const CANavbar = ({ user }) => {
-  console.log("USER", user);
   return (
     <Navbar className="bg-light justify-content-between">
       <Logo />
