@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider as ReduxProvider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
 import { ThemeProvider } from "styled-components";
 import { I18nextProvider } from "react-i18next";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -16,14 +18,16 @@ import { fetchSlots } from "./actions/slot_actions";
 
 library.add(fab);
 
-const store = configureStore();
+const { store, persistor } = configureStore();
 store.dispatch(fetchSlots());
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <I18nextProvider i18n={i18n}>
       <ReduxProvider store={store}>
-        <CARouter />
+        <PersistGate loading={null} persistor={persistor}>
+          <CARouter />
+        </PersistGate>
       </ReduxProvider>
     </I18nextProvider>
   </ThemeProvider>,

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
 const SlotList = ({ slots, match }) => {
+  console.log(match);
   return (
     <ul>
       {slots.map((slot) => (

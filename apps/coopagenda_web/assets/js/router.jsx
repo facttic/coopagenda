@@ -10,7 +10,7 @@ const CARouter = () => (
     <Layout>
       <Switch>
         <Route path="/welcome" component={ThirdPartyCallback} />
-        <Route path="/" component={SlotsPage} />
+        <Route path="/slots" component={SlotsPage} />
       </Switch>
     </Layout>
   </Router>
