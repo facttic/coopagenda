@@ -6,17 +6,13 @@ import { Route } from "react-router-dom";
 import * as actions from "../../actions/slot_actions";
 import SlotList from "./SlotList";
 import SlotPage from "./SlotPage";
-import ProposalList from "../Proposals/ProposalList";
 
 const SlotsPage = ({ slots, match }) => {
   return (
-    <div>
-      <h1>Slots</h1>
-      <div>
-        <SlotList slots={slots} match={match} />
-      </div>
+    <>
+      <SlotList slots={slots} match={match} />
       <Route path={`${match.path}/:id`} component={SlotPage} />
-    </div>
+    </>
   );
 };
 

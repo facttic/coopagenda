@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import ProposalList from "../Proposals/ProposalList";
+// import ProposalList from "../Proposals/ProposalList";
 
 const SlotPage = ({ slot }) => {
   return (
@@ -10,7 +10,7 @@ const SlotPage = ({ slot }) => {
       <h1>{slot.id}</h1>
       <p>begin: {slot.begin}</p>
       <p>duration: {slot.duration}</p>
-      <ProposalList proposals={slot.proposals} />
+      {/* <ProposalList proposals={slot.proposals} /> */}
     </div>
   );
 };
