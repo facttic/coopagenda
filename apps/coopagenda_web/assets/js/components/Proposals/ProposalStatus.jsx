@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 const ProposalStatus = ({ accepted }) => {
-  return <td>{accepted.toString()}</td>;
+  return <td className={accepted ? "text-success" : "text-secondary"}>{accepted ? "Aceptado" : "Pendiente"}</td>;
 };
 
 ProposalStatus.propTypes = {
