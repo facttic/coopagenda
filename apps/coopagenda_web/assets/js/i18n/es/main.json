@@ -1,6 +1,24 @@
 {
   "menu": {
-    "login": "Ingresar",
-    "home": "Home"
+    "login": "Ingresar con Github",
+    "logout": "Cerrar Sesión"
+  },
+  "agenda": {
+    "date": "Fecha",
+    "time": "Hora",
+    "event": "Evento",
+    "description": "Descripción",
+    "host": "Host",
+    "hostCoop": "Host Coop",
+    "status": "Estado"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "accepted": "Accepted"
+  },
+  "actions": {
+    "watch": "Ver",
+    "edit": "Editar",
+    "delete": "Eliminar"
   }
 }

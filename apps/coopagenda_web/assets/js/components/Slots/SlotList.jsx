@@ -1,23 +1,26 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { PropTypes } from "prop-types";
+import { useTranslation } from "react-i18next";
 
 import SlotRow from "./SlotRow";
 import ProposalList from "../Proposals/ProposalList";
 
 const SlotList = ({ slots, match }) => {
+  const { t, i18n } = useTranslation();
+
   return slots.length ? (
     <>
       <Table borderless>
         <thead className="text-uppercase">
           <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Evento</th>
-            <th>Descripcion</th>
-            <th>Host</th>
-            <th>Host coop</th>
-            <th>Estado</th>
+            <th>{t("agenda.date")}</th>
+            <th>{t("agenda.time")}</th>
+            <th>{t("agenda.event")}</th>
+            <th>{t("agenda.description")}</th>
+            <th>{t("agenda.host")}</th>
+            <th>{t("agenda.hostCoop")}</th>
+            <th>{t("agenda.status")}</th>
             <th />
           </tr>
         </thead>

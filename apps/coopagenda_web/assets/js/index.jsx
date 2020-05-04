@@ -4,9 +4,9 @@ import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { ThemeProvider } from "styled-components";
-import { I18nextProvider } from "react-i18next";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+
 import i18n from "./i18n/i18n";
 
 import CARouter from "./router";
@@ -23,13 +23,11 @@ store.dispatch(fetchSlots());
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <I18nextProvider i18n={i18n}>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <CARouter />
-        </PersistGate>
-      </ReduxProvider>
-    </I18nextProvider>
+    <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <CARouter />
+      </PersistGate>
+    </ReduxProvider>
   </ThemeProvider>,
   document.getElementById("react-app")
 );

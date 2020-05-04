@@ -1,16 +1,20 @@
 import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-import * as en from "./en/main.json";
-import * as es from "./es/main.json";
+import en from "./en/main.json";
+import es from "./es/main.json";
 
 // import store from '../state/index'
 // import { changeLocale } from '../state/user_preferences/reducer'
 
-i18n.init({
+console.log(en);
+
+i18n.use(initReactI18next).init({
   fallbackLng: "en",
+  lng: "en",
+  debug: true,
   resources: { en, es },
   // lng: store.getState().UserPreferences.locale,
-  defaultNS: "main",
   joinArrays: "\n",
   react: {
     wait: true,

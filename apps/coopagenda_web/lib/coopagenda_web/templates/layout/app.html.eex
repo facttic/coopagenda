@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Recumap · Locate assistance and resources</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <%= csrf_meta_tag() %>
   </head>
   <body id="page-top">
@@ -14,7 +12,5 @@
 
     <%= render @view_module, @view_template, assigns %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/index.js") %>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.27/moment-timezone-with-data.min.js"></script>
   </body>
 </html>

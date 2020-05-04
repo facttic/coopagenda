@@ -1,6 +1,26 @@
 {
-  "menu": {
-    "login": "Log in",
-    "home": "Home"
+  "translation": {
+    "menu": {
+      "login": "Login with Github",
+      "logout": "Logout"
+    },
+    "agenda": {
+      "date": "Date",
+      "time": "Time",
+      "event": "Event",
+      "description": "Description",
+      "host": "Host",
+      "hostCoop": "Host Coop",
+      "status": "Status"
+    },
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted"
+    },
+    "actions": {
+      "watch": "Watch",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
   }
 }
