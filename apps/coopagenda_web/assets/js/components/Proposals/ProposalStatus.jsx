@@ -1,12 +1,12 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-const ProposalStatus = ({ proposal }) => {
-  return <td>{proposal.accepted.toString()}</td>;
+const ProposalStatus = ({ accepted }) => {
+  return <td>{accepted.toString()}</td>;
 };
 
 ProposalStatus.propTypes = {
-  proposal: PropTypes.object.isRequired,
+  accepted: PropTypes.bool.isRequired,
 };
 
 export default ProposalStatus;
