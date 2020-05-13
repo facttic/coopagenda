@@ -15,7 +15,7 @@ Built using the Elixir's [Phoenix Framework](https://phoenixframework.org/). To 
 
 - Install dependencies with `mix deps.get`
 - Create and export env variables for your dev PostgreSQL and GitHub auth info configuration. E.g.: `.env.example`
-- Create and migrate your database with `mix ecto.etup`
+- Create and migrate your database with `mix ecto.setup`
 - Install Node.js dependencies with `cd assets && npm install`
 - Start Phoenix endpoint with `mix phx.server`
 
