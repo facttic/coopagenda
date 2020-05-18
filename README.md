@@ -15,9 +15,9 @@ Built using the Elixir's [Phoenix Framework](https://phoenixframework.org/). To 
 
 - Install dependencies with `mix deps.get`
 - Create and export env variables for your dev PostgreSQL and GitHub auth info configuration. E.g.: `.env.example`
-- Create and migrate your database with `mix ecto.setup`
-- Install Node.js dependencies with `cd assets && npm install`
-- Start Phoenix endpoint with `mix phx.server`
+- in /apps/coopagenda: Create and migrate your database with `mix ecto.setup`
+- in /apps/coopagenda-web Install Node.js dependencies with `cd assets && npm install`
+- in /apps/coopagenda: Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.  :sparkles:
 
