@@ -7,11 +7,18 @@ server: MIX_ENV=dev
 server:
 	@source .env && iex --name server@127.0.0.1 -S mix phx.server
 
+setup: 
+	@source .env && mix ecto.setup
+reset:
+	@source .env && mix ecto.reset
+migrate: 
+	@source .env && mix ecto.migrate
+
 release: MIX_ENV=prod
 release:
 	@NODE_ENV=prod npm run deploy
 	@mix phx.digest && PORT=4000 mix release
-	@_build/prod/rel/coophub/bin/coophub start_iex
+	@_build/prod/rel/coopagenda/bin/coopagenda start_iex
 
 compile:
 	@mix compile

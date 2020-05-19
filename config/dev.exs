@@ -15,7 +15,7 @@ config :coopagenda, Coopagenda.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :coopagenda_web, CoopagendaWeb.Endpoint,
+config :coopagenda, CoopagendaWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -26,7 +26,7 @@ config :coopagenda_web, CoopagendaWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../apps/coopagenda_web/assets", __DIR__)
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
@@ -55,7 +55,7 @@ config :coopagenda_web, CoopagendaWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :coopagenda_web, CoopagendaWeb.Endpoint,
+config :coopagenda, CoopagendaWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

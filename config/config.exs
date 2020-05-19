@@ -10,17 +10,13 @@ use Mix.Config
 config :coopagenda,
   ecto_repos: [Coopagenda.Repo]
 
-config :coopagenda_web,
-  ecto_repos: [Coopagenda.Repo],
-  generators: [context_app: :coopagenda]
-
 # Configures the endpoint
-config :coopagenda_web, CoopagendaWeb.Endpoint,
+config :coopagenda, CoopagendaWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "Cm6+1FkX19z2bc76P8Bmr6IYgvkuvOOsYRxODnZgd+gPrNPK3Ru/GIgKApmrRkOP",
-  render_errors: [view: CoopagendaWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Coopagenda.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "9XsLOU03HtWh+V3YmBvLQWqObf9RqHVj"]
+  secret_key_base: "z9idv0yfEl0Vk3qqBSK7UZVdYy6R4jzpBNuoKv6G/VtXVwYMij3bmF8OIjjLMOKe",
+  render_errors: [view: CoopagendaWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Coopagenda.PubSub,
+  live_view: [signing_salt: "Xn2270yS"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -30,11 +26,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :phoenix, template_engines: [leex: Phoenix.LiveView.Engine]
-
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
 
 config :ueberauth, Ueberauth,
   providers: [
@@ -48,3 +39,7 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 config :coopagenda, Coopagenda.Accounts.Guardian,
   issuer: "coopagenda",
   secret_key: "IleUlDrRYUsgmaieUFRW7Bk1df8YwIxswfOhTwwsTXly6g36w+wFQedFC7fevx8M"
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env()}.exs"
