@@ -11,11 +11,14 @@ defmodule CoopagendaWeb.ProposalView do
   end
 
   def render("proposal.json", %{proposal: proposal}) do
-    %{id: proposal.id,
+    %{
+      id: proposal.id,
+      user_id: proposal.user_id,
       accepted: proposal.accepted,
       details: proposal.details,
       hosted_by: proposal.hosted_by,
       hosting_coop: proposal.hosting_coop,
-      title: proposal.title}
+      title: proposal.title
+    }
   end
 end
