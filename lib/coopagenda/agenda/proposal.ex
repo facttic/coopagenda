@@ -2,9 +2,12 @@ defmodule Coopagenda.Agenda.Proposal do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @required_fields [:hosted_by, :hosting_coop, :title]
+  @optional_fields [:accepted, :details]
+
   schema "proposals" do
     field :accepted, :boolean, default: false
-    field :details, :string
+    field :details, :string, default: ""
     field :hosted_by, :string
     field :hosting_coop, :string
     field :title, :string
@@ -18,7 +21,7 @@ defmodule Coopagenda.Agenda.Proposal do
   @doc false
   def changeset(proposal, attrs) do
     proposal
-    |> cast(attrs, [:accepted, :details, :hosted_by, :hosting_coop, :title])
-    |> validate_required([:details, :hosted_by, :hosting_coop, :title])
+    |> cast(attrs, @optional_fields ++ @required_fields)
+    |> validate_required(@required_fields)
   end
 end

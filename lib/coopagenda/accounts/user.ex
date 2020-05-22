@@ -2,6 +2,9 @@ defmodule Coopagenda.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @required_fields [:username, :avatar, :email, :provider]
+  @optional_fields [:admin]
+
   schema "users" do
     field :admin, :boolean, default: false
     field :avatar, :string
@@ -18,8 +21,8 @@ defmodule Coopagenda.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :avatar, :email, :provider, :admin])
-    |> validate_required([:username, :avatar, :email, :provider])
+    |> cast(attrs, @optional_fields ++ @required_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint([:username, :provider])
     |> unique_constraint([:email, :provider])
   end
