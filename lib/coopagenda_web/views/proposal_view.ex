@@ -18,6 +18,7 @@ defmodule CoopagendaWeb.ProposalView do
       details: proposal.details,
       hosted_by: proposal.hosted_by,
       hosting_coop: proposal.hosting_coop,
+      slot_ids: Enum.map(proposal.slots, &(&1.id)),
       title: proposal.title
     }
   end

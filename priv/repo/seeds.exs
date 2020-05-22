@@ -100,4 +100,4 @@ Accounts.create_user(%{
 })
 
 Agenda.upsert_slot_proposals(slot1, [proposal1.id, proposal2.id])
-Agenda.upsert_slot_proposals(slot2, [proposal4.id, proposal3.id, proposal5.id])
+Agenda.upsert_slot_proposals(slot2, [proposal1.id, proposal4.id, proposal3.id, proposal5.id])
