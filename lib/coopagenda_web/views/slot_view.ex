@@ -17,7 +17,7 @@ defmodule CoopagendaWeb.SlotView do
       user_id: slot.user_id,
       begin: slot.begin,
       duration: slot.duration,
-      proposals: render_many(slot.proposals, ProposalView, "proposal_with_no_slots.json")
+      proposals: render_many(slot.proposals, ProposalView, "proposal.json")
     }
   end
 end
