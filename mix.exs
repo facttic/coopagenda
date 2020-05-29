@@ -48,6 +48,7 @@ defmodule Coopagenda.MixProject do
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
       {:guardian, "~> 2.1"},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 

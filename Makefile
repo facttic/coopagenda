@@ -5,14 +5,14 @@ export SECRET_KEY_BASE ?= $(shell mix phx.gen.secret)
 
 server: MIX_ENV=dev
 server:
-	@source .env && iex --name server@127.0.0.1 -S mix phx.server
+	@source .env_setup && iex --name server@127.0.0.1 -S mix phx.server
 
 setup: 
-	@source .env && mix ecto.setup
+	@source .env_setup && mix ecto.setup
 reset:
-	@source .env && mix ecto.reset
+	@source .env_setup && mix ecto.reset
 migrate: 
-	@source .env && mix ecto.migrate
+	@source .env_setup && mix ecto.migrate
 
 release: MIX_ENV=prod
 release:

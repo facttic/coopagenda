@@ -41,3 +41,5 @@ npm-debug.log
 
 .env
 .env.prod
+.env.exports
+.env_setup
