@@ -1,13 +1,13 @@
 defmodule CoopagendaWeb.AuthController do
   use CoopagendaWeb, :controller
-  plug Ueberauth
+  plug(Ueberauth)
 
   alias Coopagenda.Accounts
 
   def callback(%{assigns: %{ueberauth_failure: fails}} = conn, _params) do
     conn
     |> put_status(401)
-    |> redirect(to: "/welcome?error=#{fails}")
+    |> redirect(to: "#{System.get_env("FE_URL")}/welcome?error=#{fails}")
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
@@ -32,12 +32,17 @@ defmodule CoopagendaWeb.AuthController do
       {:ok, user} ->
         {:ok, token, _claims} = Accounts.Guardian.encode_and_sign(user)
 
+        redirect_query =
+          URI.encode_query(
+            userId: user.id,
+            token: token,
+            username: user.username,
+            admin: user.admin,
+            userAvatar: user.avatar
+          )
+
         conn
-        |> resp(:found, "")
-        |> put_resp_header(
-          "location",
-          "/welcome?userId=#{user.id}&username=#{user.username}&admin=#{user.admin}&userAvatar=#{user.avatar}&token=#{token}"
-        )
+        |> redirect(external: "#{System.get_env("FE_URL")}/welcome?#{redirect_query}")
 
       {:error, reason} ->
         conn
