@@ -1,4 +1,1 @@
-<section class="phx-hero">
-  <h1>Welcome</h1>
-  <p>I ain't no website</p>
-</section>
+<div id="react-app"></div>

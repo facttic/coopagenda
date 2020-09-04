@@ -10,7 +10,7 @@
   <body id="page-top">
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <%= render @view_module, @view_template, assigns %>
+    <%= @inner_content %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/index.js") %>"></script>
   </body>
 </html>
