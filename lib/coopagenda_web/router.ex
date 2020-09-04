@@ -23,16 +23,10 @@ defmodule CoopagendaWeb.Router do
   end
 
   scope "/auth", CoopagendaWeb do
-    pipe_through :browser
+    pipe_through :api
 
     get "/:provider/callback", AuthController, :callback
     get "/signout", AuthController, :signout
-  end
-
-  scope "/", CoopagendaWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
   end
 
   # Enables LiveDashboard only for development
@@ -49,5 +43,11 @@ defmodule CoopagendaWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: CoopagendaWeb.Telemetry
     end
+  end
+
+  scope "/", CoopagendaWeb do
+    pipe_through :browser
+
+    get "/*path", PageController, :index
   end
 end
