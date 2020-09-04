@@ -7,11 +7,11 @@ server: MIX_ENV=dev
 server:
 	@source .env_setup && iex --name server@127.0.0.1 -S mix phx.server
 
-setup: 
+setup:
 	@source .env_setup && mix ecto.setup
 reset:
 	@source .env_setup && mix ecto.reset
-migrate: 
+migrate:
 	@source .env_setup && mix ecto.migrate
 
 release: MIX_ENV=prod
